@@ -12,7 +12,9 @@ body {
 
 nav,
 footer,
-main {
+main,
+p,
+#how {
   margin: 0 auto;
   max-width: 100ex;
 }
@@ -104,6 +106,8 @@ nav {
 }
 
 .button {
+  display: block;
+  margin: 1ex auto;
   padding: 1.2ex 2.4ex;
   border: none;
   background: #AF3E1A;
@@ -120,4 +124,52 @@ nav {
 #share {
   margin: 1ex;
   font-size: 1.3em;
+}
+
+#how {
+  padding: 0 1ex;
+  margin-bottom: 20ex;
+}
+
+#how a {
+  color: #7B2307;
+}
+
+#how input {
+  display: block;
+  font-family: inherit;
+  font-size: 1.2em;
+  margin: 3ex auto;
+  margin-top: 6ex;
+  padding: 1ex;
+  border: none;
+  box-shadow: 0 0 5px #ccc;
+  width: 80vw;
+  max-width: 70ex;
+  text-align: center;
+}
+
+#quote {
+  margin: 6ex auto;
+  position: relative;
+  max-width: 140ex;
+}
+
+#quote blockquote {
+  font-size: 3em;
+  width: 10em;
+  position: relative;
+  top: -2em;
+}
+
+#quote figcaption {
+  margin: 0 1ex;
+}
+
+#quote img {
+  width: 30vw;
+  max-width: 250px;
+  position: absolute;
+  bottom: -3ex;
+  right: 10%;
 }
