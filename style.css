@@ -10,6 +10,10 @@ body {
   font-family: 'Playfair Display';
 }
 
+* {
+  box-sizing: border-box;
+}
+
 nav,
 footer,
 main,
@@ -34,8 +38,8 @@ a:hover {
   text-decoration: underline;
 }
 
-h1 {
-  /* margin: 0; */
+h1,h2,h3{
+  text-align: center;
 }
 
 .bg {
@@ -54,6 +58,7 @@ nav {
   list-style: none;
   display: flex;
   flex-direction: row;
+  transition: 0.5s;
 }
 
 .menu li {
@@ -74,7 +79,8 @@ nav {
 }
 
 #heading {
-  padding: 40px 0;
+  padding-top: 40px;
+  padding-bottom: 80px;
 }
 
 #heading h2 {
@@ -94,15 +100,15 @@ nav {
 
 .decoration {
   position: relative;
-  width: 80px;
-  height: 80px;
 }
 
 .decoration#stripes {
   background: url('icons/stripes.svg');
-  top: -40px;
-  left: 80vw;
-  width: 99px;
+  background-repeat: no-repeat;
+  top: -30px;
+  left: calc(90vw - 100px);
+  height: 60px;
+  width: 100px;
 }
 
 .button {
@@ -127,7 +133,7 @@ nav {
 }
 
 #how {
-  padding: 0 1ex;
+  padding: 0 3ex;
   margin-bottom: 20ex;
 }
 
@@ -156,20 +162,54 @@ nav {
 }
 
 #quote blockquote {
-  font-size: 3em;
+  margin: 0 0.5em;
+  font-size: 6vmin;
   width: 10em;
   position: relative;
-  top: -2em;
+  top: -1em;
 }
 
 #quote figcaption {
   margin: 0 1ex;
+  width: calc(70vw - 100px);
 }
 
 #quote img {
   width: 30vw;
+  min-width: 100px;
   max-width: 250px;
   position: absolute;
   bottom: -3ex;
   right: 10%;
+}
+
+@media screen and (max-width: 480px) {
+  .menu {
+    position: absolute;
+    flex-direction: column;
+    transform: translateX(-200px);
+    padding: 0;
+    margin-top: 0;
+  }
+
+  .menu li {
+    margin: 10px 0;
+    width: 50vw;
+    text-decoration: underline;
+    font-size: 1.2em;
+  }
+
+  .menu.menu--active {
+    display: flex;
+    background: #FFEC40;
+    transform: translateX(0px)
+  }
+
+  button.hamburger {
+    display: inline-block;
+  }
+
+  #key-instruction {
+    display: none;
+  }
 }
