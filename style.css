@@ -14,6 +14,11 @@ body {
   box-sizing: border-box;
 }
 
+*::selection {
+  color: white;
+  background: #882f2f;
+}
+
 nav,
 footer,
 main,
