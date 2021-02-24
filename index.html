@@ -22,14 +22,14 @@
           <li><a href="/rules">Zasady</a></li>
           <li><a href="/login">Zaloguj się</a></li>
         </ul>
-  <script>
-const hm = document.querySelector('button.hamburger');
+        <script>
+          const hm = document.querySelector('button.hamburger');
 const menu = document.querySelector('ul.menu');
 hm.addEventListener('click', () => {
   hm.classList.toggle('hamburger--active')
   menu.classList.toggle('menu--active')
 })
-  </script>
+        </script>
       </nav>
       <div id="heading" class="center">
         <h2>Bo warto się dzielić</h2>
@@ -71,9 +71,26 @@ hm.addEventListener('click', () => {
         <blockquote>
           Myśl wielka zwykle usta do milczenia zmusza.
         </blockquote>
-      <figcaption>Adam Mickiewicz, <cite>Pan Tadeusz</cite></figcaption>
+      <figcaption>Adam Mickiewicz, <cite>Pan&nbsp;Tadeusz</cite></figcaption>
       <img src="media/adam_mickiewicz.png">
       </figure>
+    </div>
+    <div id="footer">
+      <footer>
+        <div>
+        <nav>
+          <ul>
+            <li><a href="#heading">Prześlij</a></li>
+            <li><a href="/rules">Zasady</a></li>
+            <li><a href="/contact">Kontakt</a></li>
+          </ul>
+        </nav>
+        </div>
+        <div>
+          <p>Autor: <em>Patryk Niedźwiedziński</em></p>
+          <p>Szkoła: <em>Technikum Komunikacji w Poznaniu</em></p>
+        </div>
+      </footer>
     </div>
   </body>
 </html>
