@@ -273,3 +273,30 @@ footer div {
 #footer ul {
   flex-direction: column;
 }
+
+#extra {
+  top: 30vh;
+  width: 10vw;
+  position: fixed;
+  padding: 1em;
+  background: #882f2f;
+  transition: all 1s;
+}
+
+#extra.hidden {
+  transform: translateX(-10vw);
+}
+
+#extra button {
+  border: 1px solid white;
+}
+
+#extra .show {
+  position: absolute;
+  height: 5vw;
+  background: #882f2f;
+  color: white;
+  width: 5vw;
+  left: 10vw;
+
+}

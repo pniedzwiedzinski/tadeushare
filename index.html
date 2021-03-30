@@ -8,6 +8,18 @@
     <link rel="stylesheet" href="hamburger.css" type="text/css">
   </head>
   <body>
+    <div id="extra" class="hidden">
+      <button class="show">•</button>
+      <button id="font">Zmień czcionkę</button>
+      <button id="small">-</button>
+      <button id="large">+</button>
+    </div>
+  <script>
+    document.querySelector("#extra .show").addEventListener("click", () => document.querySelector("#extra").classList.toggle("hidden"))
+document.querySelector("#font").addEventListener("click", () => document.body.style["font-family"] = "sans-serif")
+document.querySelector("#small").addEventListener("click", () => document.body.style["font-size"] = "14px")
+document.querySelector("#large").addEventListener("click", () => document.body.style["font-size"] = "22px")
+  </script>
     <header class="bg">
       <nav>
         <div>
