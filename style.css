@@ -293,10 +293,13 @@ footer div {
 
 #extra .show {
   position: absolute;
-  height: 5vw;
   background: #882f2f;
   color: white;
+  height: 5vw;
+  max-height: 50px;
   width: 5vw;
+  max-width: 50px;
+  top: 0;
   left: 10vw;
 
 }
