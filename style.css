@@ -12,6 +12,10 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Playfair Display', serif;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
 }
 
 * {
@@ -21,6 +25,10 @@ body {
 *::selection {
   color: white;
   background: #882f2f;
+}
+
+main {
+  flex: 1;
 }
 
 nav,
@@ -167,9 +175,19 @@ nav ul li {
 }
 
 #quote {
-  margin: 6ex auto;
+  margin: 3ex auto;
   position: relative;
   max-width: 140ex;
+}
+
+blockquote::before {
+  content: open-quote;
+}
+blockquote::after {
+  content: close-quote;
+}
+blockquote {
+  quotes: "“" "”" "‘" "’";
 }
 
 #quote blockquote {
@@ -182,12 +200,12 @@ nav ul li {
 
 #quote figcaption {
   margin: 0 1ex;
-  width: calc(70vw - 100px);
+  width: calc(70vw - 110px);
 }
 
 #quote img {
-  width: 30vw;
-  min-width: 100px;
+  width: 20vw;
+  min-width: 110px;
   max-width: 250px;
   position: absolute;
   bottom: -3ex;
