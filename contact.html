@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Tadeushare</title>
+    <title>Kontakt - Tadeushare</title>
     <link rel="stylesheet" href="style.css" type="text/css">
     <link rel="stylesheet" href="hamburger.css" type="text/css">
   </head>
@@ -56,11 +56,21 @@ form input {
 </style>
       <form action="#">
         <label for="msg">Treść wiadomości</label>
-        <textarea id="msg" cols="50" rows="15" name="msg"></textarea>
+        <textarea id="msg" cols="50" rows="15" name="msg" required></textarea>
         <label for="email">Twój email</label>
-        <input type="email" id="email" name="email">
+        <input type="email" id="email" name="email" required>
         <button id="s" class="button" type="submit">Prześlij</button>
       </form>
+  <script>
+    document.querySelector('form').addEventListener("submit", () => {
+      if(document.querySelector('textarea').value.length < 20) {
+        alert("Twoja wiadomość jest za krótka")
+        return false;
+      }
+      return true;
+    })
+  </script>
+
 
     </main>
     <div id="footer">
