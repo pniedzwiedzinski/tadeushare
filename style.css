@@ -124,7 +124,7 @@ nav ul li {
 .decoration#stripes {
   background: url('icons/stripes.svg');
   background-repeat: no-repeat;
-  top: -30px;
+  bottom: calc(-1em - 30px);
   left: calc(90vw - 100px);
   height: 60px;
   width: 100px;
