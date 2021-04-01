@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tadeushare</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="stylesheet" href="hamburger.css" type="text/css">
+  </head>
+  <body>
+    <header class="bg">
+      <nav>
+        <div>
+          <a href="/"><h1>Tadeushare.</h1></a>
+        </div>
+        <button class="hamburger">
+          <span class="hamburger__box">
+            <span class="hamburger__inner"></span>
+          </span>
+        </button>
+        <ul class="menu">
+          <li><a href="/rules">Zasady</a></li>
+          <li><a href="/login">Zaloguj się</a></li>
+        </ul>
+        <script>
+          const hm = document.querySelector('button.hamburger');
+const menu = document.querySelector('ul.menu');
+hm.addEventListener('click', () => {
+  hm.classList.toggle('hamburger--active')
+  menu.classList.toggle('menu--active')
+})
+        </script>
+      </nav>
+    </header>
+    <main>
+      <h1>Kontakt</h1>
+<style>
+form * {
+  margin: 1ex auto;
+  display: block;
+}
+
+form label {
+  margin-left: 1em;
+}
+
+form textarea,
+form input {
+  width: 90%;
+  line-height: 1.5em;
+}
+
+#s {
+  margin-top: 2em;
+}
+</style>
+      <form action="#">
+        <label for="msg">Treść wiadomości</label>
+        <textarea id="msg" cols="50" rows="15" name="msg"></textarea>
+        <label for="email">Twój email</label>
+        <input type="email" id="email" name="email">
+        <button id="s" class="button" type="submit">Prześlij</button>
+      </form>
+
+    </main>
+    <div id="footer">
+      <footer>
+        <div>
+          <nav>
+            <ul>
+              <li><a href="#heading">Prześlij</a></li>
+              <li><a href="/rules">Zasady</a></li>
+              <li><a href="/contact">Kontakt</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div>
+          <p>Autor: <em>Patryk Niedźwiedziński</em></p>
+          <p>Szkoła: <em>Technikum Komunikacji w Poznaniu</em></p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -27,6 +27,11 @@ body {
   background: #882f2f;
 }
 
+footer *::selection {
+  color: #882f2f;
+  background: white;
+}
+
 main {
   flex: 1;
 }

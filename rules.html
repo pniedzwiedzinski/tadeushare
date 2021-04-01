@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tadeushare</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="stylesheet" href="hamburger.css" type="text/css">
+  </head>
+  <body>
+    <header class="bg">
+      <nav>
+        <div>
+          <a href="/"><h1>Tadeushare.</h1></a>
+        </div>
+        <button class="hamburger">
+          <span class="hamburger__box">
+            <span class="hamburger__inner"></span>
+          </span>
+        </button>
+        <ul class="menu">
+          <li><a href="/rules">Zasady</a></li>
+          <li><a href="/login">Zaloguj się</a></li>
+        </ul>
+        <script>
+          const hm = document.querySelector('button.hamburger');
+const menu = document.querySelector('ul.menu');
+hm.addEventListener('click', () => {
+  hm.classList.toggle('hamburger--active')
+  menu.classList.toggle('menu--active')
+})
+        </script>
+      </nav>
+    </header>
+    <main>
+      <h1>Zasady usługi</h1>
+<style>
+.rules li {
+  font-size: 1.2em;
+  margin: 2em 2em;
+}
+.rules li::marker {
+  color: #555;
+  font-size: 2.5em;
+}
+.rules li:nth-child(even) {
+  margin-right: 2em;
+}
+.rules li:nth-child(odd) {
+  margin-left: 4em;
+}
+</style>
+      <ol class="rules">
+        <li>Maksymalny rozmiar tekstu to 500MB.</li>
+        <li>Wszystkie przesłane teksty są ogólno dostępne przez podanie cytatu, nie zaleca się udostępniania danych wrażliwych.</li>
+        <li>Zakazuje się umieszczania tekstów wulgarnych, propagującą mowę nienawiści oraz wyzywającą lub obrażającą.</li>
+        <li>Na platformie można umieszczać jedynie pliki tekstowe, jeżeli chcesz umieścić plik binarny musisz go zakodować np. <a href="https://en.wikipedia.org/wiki/Base64">base64</a>.</li>
+      </ol>
+
+    </main>
+    <div id="footer">
+      <footer>
+        <div>
+          <nav>
+            <ul>
+              <li><a href="#heading">Prześlij</a></li>
+              <li><a href="/rules">Zasady</a></li>
+              <li><a href="/contact">Kontakt</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div>
+          <p>Autor: <em>Patryk Niedźwiedziński</em></p>
+          <p>Szkoła: <em>Technikum Komunikacji w Poznaniu</em></p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
