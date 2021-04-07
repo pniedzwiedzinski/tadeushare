@@ -1,0 +1,107 @@
+:root {
+  --yellow-main: #FFEC40;
+  --red-main: #882f2f;
+  --red-second: #7b2307;
+  --red-bg-light: #AF3E1A;
+  --red-bg-dark: #9F3E20;
+
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  max-width: 80ex;
+  margin: 0 auto;
+  padding: 1em;
+}
+
+input {
+  margin: 1em;
+  padding: 1ex;
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid #222;
+}
+
+input:focus {
+  outline: none;
+  border-bottom: 3px solid var(--red-main);
+}
+
+.button {
+  display: block;
+  margin: 1ex auto;
+  padding: 1.2ex 2.4ex;
+  border: none;
+  background: var(--red-bg-light);;
+  box-shadow: 0.8ex 0.8ex 0px var(--red-second);
+  color: white;
+}
+
+.button:focus,
+.button:hover {
+  outline: none;
+  text-decoration: none;
+  cursor: pointer;
+  background: var(--red-bg-dark);
+  box-shadow: 0.6ex 0.6ex 0px var(--red-second);
+}
+
+a {
+  height: 100%;
+  line-height: 100%;
+  color: inherit;
+  border-bottom: 1px dashed;
+  text-decoration: none;
+}
+
+a:active {
+  color: var(--red-second);
+}
+
+a:focus,
+a:hover {
+  color: var(--red-main);
+  border-bottom: 1px solid;
+}
+
+select {
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid black;
+  padding: 0.5ex 1em 0.5ex 0.5ex;
+  margin: 1em;
+  font-family: inherit;
+  cursor: inherit;
+  line-height: inherit;
+}
+
+select:focus,
+select:hover {
+  outline: none;
+  border-bottom: 2px solid var(--red-main);
+}
+
+.select-arrow {
+  content: "";
+  width: 0.8em;
+  height: 0.5em;
+  background-color: #000;
+  clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+}
+
+.error {
+  color: red;
+}
+
+.error::before {
+  content: '❗ ';
+  color: red;
+}
+
+.success {
+  color: #254578;
+}
