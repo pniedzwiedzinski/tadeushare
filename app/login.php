@@ -23,7 +23,7 @@
   }
 
   $title="Login";
-  require('header.php');
+  require('header_blank.php');
 ?>
 <style>
 .login {

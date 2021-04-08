@@ -5,26 +5,32 @@ if(!isset($_SESSION["user_id"])) {
   die();
 }
 
-require("config.php");
-$db = mysqli_connect("$db_host:$db_port", $db_user, $db_pass, $db_name);
-$id = mysqli_real_escape_string($db, $_SESSION['user_id']);
-$sql = "SELECT name, surname, mail, password FROM user WHERE id = '$id'";
-$result = mysqli_query($db, $sql);
-if (mysqli_num_rows($result) == 1) {
-  $row = mysqli_fetch_assoc($result);
-} else {
-  header("location: login.php");
-  die();
+function get_user() {
+  require("config.php");
+  $db = mysqli_connect("$db_host:$db_port", $db_user, $db_pass, $db_name);
+  $id = mysqli_real_escape_string($db, $_SESSION['user_id']);
+  $sql = "SELECT name, surname, mail, password FROM user WHERE id = '$id'";
+  $result = mysqli_query($db, $sql);
+  if (mysqli_num_rows($result) == 1) {
+    return mysqli_fetch_assoc($result);
+  } else {
+    header("location: login.php");
+    die();
+  }
 }
+$row = get_user();
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
   if(password_verify($_POST["old_password"], $row["password"])) {
+    require("config.php");
+    $db = mysqli_connect("$db_host:$db_port", $db_user, $db_pass, $db_name);
     $name = mysqli_real_escape_string($db, $_POST['name']);
     $surname = mysqli_real_escape_string($db, $_POST['surname']);
     $pass = mysqli_real_escape_string($db, password_hash($_POST['password'], PASSWORD_DEFAULT));
     $sql = "UPDATE user SET name = '$name', surname = '$surname', password = '$pass' WHERE id = '$id'";
     if (mysqli_query($db, $sql) == TRUE) {
       $status = "Zaktualizowano dane 🎉";
+      $row = get_user();
     } else {
       $err = "Error: ".mysqli_error($db);
     }
@@ -71,6 +77,10 @@ if (isset($err)) {
   <label for="mail">Mail</label>
   <input type="text" name="mail" id="mail" value="<?php echo $row["mail"]; ?>" readonly>
   </div>
+  <button class="button" style="font-size: 1em; margin-top: 2em" type="submit">Zaktualizuj</button>
+</form>
+<h2>Zmień hasło</h2>
+<form method="POST" action="password_update.php">
   <div>
   <label for="old_password">Stare hasło</label>
   <input type="password" name="old_password" id="old_password">
@@ -79,7 +89,7 @@ if (isset($err)) {
   <label for="password">Nowe hasło</label>
   <input type="password" name="password" id="password">
   </div>
-  <button class="button" style="font-size: 1em; margin-top: 2em" type="submit">Zaktualizuj</button>
+  <button class="button" style="font-size: 1em; margin-top: 2em" type="submit">Zmień</button>
 </form>
 
 <?php
