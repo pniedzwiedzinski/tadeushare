@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "/app/*"
+  to = "https://tadeushare-backend.herokuapp.com/:splat"
+  status = 200
+  force = true
