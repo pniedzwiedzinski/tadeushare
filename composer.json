@@ -1,0 +1,14 @@
+{
+    "name": "pn/projekt",
+    "require-dev": {
+        "heroku/heroku-buildpack-php": "^190.0"
+    },
+    "license": "WTFPL",
+    "authors": [
+        {
+            "name": "Patryk Niedźwiedziński",
+            "email": "pniedzwiedzinski19@gmail.com"
+        }
+    ],
+    "require": {}
+}
