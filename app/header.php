@@ -11,6 +11,14 @@
       <header>
         <nav>
           <a href="index.php">Tadeushare</a>
+<?php
+  if (isset($_SESSION["user_id"])) {
+    echo "<a href=\"user.php\">Konto</a>\n";
+    echo "<a href=\"logout.php\">Wyloguj się</a>";
+  } else {
+    echo "<a href=\"login.php\">Zaloguj się</a>";
+  }
+?>
         </nav>
       </header>
       <main>

@@ -3,21 +3,17 @@
   session_start();
   require("header.php");
 ?>
-<nav>
-<ul>
-<?php
-  if (isset($_SESSION["user_id"])) {
-    echo "<li><a href=\"user.php\">Konto</a></li>";
-    echo "<li><a href=\"logout.php\">Wyloguj się</a></li>";
-  } else {
-    echo "<li><a href=\"login.php\">Zaloguj się</a></li>";
-  }
-?>
-</ul>
-</nav>
 <main>
-<textarea id="submitText"></textarea>
-<button id="submit">Prześlij</button>
+<style>
+textarea {
+  width: 100%;
+  margin: 1em;
+}
+</style>
+<form method="POST" action="upload.php">
+  <textarea cols="20" rows="20" name="text" id="text"></textarea>
+  <button class="button" id="submit">Prześlij</button>
+</form>
 </main>
 <?php
   require("footer.php");

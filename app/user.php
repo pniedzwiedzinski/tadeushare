@@ -4,40 +4,59 @@ if(!isset($_SESSION["user_id"])) {
   header("location: login.php");
   die();
 }
+require("config.php");
 
 function get_user() {
-  require("config.php");
-  $db = mysqli_connect("$db_host:$db_port", $db_user, $db_pass, $db_name);
-  $id = mysqli_real_escape_string($db, $_SESSION['user_id']);
-  $sql = "SELECT name, surname, mail, password FROM user WHERE id = '$id'";
-  $result = mysqli_query($db, $sql);
-  if (mysqli_num_rows($result) == 1) {
-    return mysqli_fetch_assoc($result);
+  $db = connect_db();
+  $id = pg_escape_string($db, $_SESSION['user_id']);
+  $sql = "SELECT name, surname, mail, password FROM \"user\" WHERE id = '$id'";
+  $result = pg_query($db, $sql);
+  if (pg_num_rows($result) == 1) {
+    return pg_fetch_assoc($result);
   } else {
     header("location: login.php");
     die();
   }
 }
-$row = get_user();
 
-if($_SERVER["REQUEST_METHOD"] == "POST") {
-  if(password_verify($_POST["old_password"], $row["password"])) {
-    require("config.php");
-    $db = mysqli_connect("$db_host:$db_port", $db_user, $db_pass, $db_name);
-    $name = mysqli_real_escape_string($db, $_POST['name']);
-    $surname = mysqli_real_escape_string($db, $_POST['surname']);
-    $pass = mysqli_real_escape_string($db, password_hash($_POST['password'], PASSWORD_DEFAULT));
-    $sql = "UPDATE user SET name = '$name', surname = '$surname', password = '$pass' WHERE id = '$id'";
-    if (mysqli_query($db, $sql) == TRUE) {
-      $status = "Zaktualizowano dane 🎉";
-      $row = get_user();
+function handle_post() {
+  global $status, $err;
+  $db = connect_db();
+
+  if(isset($_POST["password"])) {
+    # Aktualizuj hasło
+    $row = get_user();
+    if(password_verify($_POST["old_password"], $row["password"])) {
+      $pass = pg_escape_string($db, password_hash($_POST['password'], PASSWORD_DEFAULT));
+      $sql = "UPDATE \"user\" SET password = '$pass' WHERE id = ".$_SESSION["user_id"];
     } else {
-      $err = "Error: ".mysqli_error($db);
+      $err = "Błędne hasło";
+      return;
     }
+
   } else {
-    $err = "Błędne hasło";
+    # Aktualizuj imię i nazwisko
+    $name = pg_escape_string($db, $_POST['name']);
+    $surname = pg_escape_string($db, $_POST['surname']);
+    if (empty($name) || empty($surname)) {
+      $err = "Podaj poprawne imię i nazwisko";
+      return;
+    }
+    $sql = "UPDATE \"user\" SET name = '$name', surname = '$surname' WHERE id = ".$_SESSION["user_id"];
+  }
+  $res = pg_query($db, $sql);
+  if ($res == TRUE) {
+    $status = "Zaktualizowano dane 🎉";
+  } else {
+    $err = "Error: ".pg_result_error($res);
+    return;
   }
 }
+
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+  handle_post();
+}
+$row = get_user();
 $title = "Konto";
 require("header.php");
 ?>
@@ -80,7 +99,7 @@ if (isset($err)) {
   <button class="button" style="font-size: 1em; margin-top: 2em" type="submit">Zaktualizuj</button>
 </form>
 <h2>Zmień hasło</h2>
-<form method="POST" action="password_update.php">
+<form method="POST">
   <div>
   <label for="old_password">Stare hasło</label>
   <input type="password" name="old_password" id="old_password">

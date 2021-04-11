@@ -5,18 +5,16 @@
 
   if($_SERVER["REQUEST_METHOD"] == "POST") {
     require("config.php");
-    $db = mysqli_connect("$db_host:$db_port", $db_user, $db_pass, $db_name);
-    $mail = mysqli_real_escape_string($db, $_POST['email']);
+    $db = connect_db();
+    $mail = pg_escape_string($db, $_POST['email']);
 
-    $sql = "SELECT id, password FROM user WHERE mail = '$mail'";
-    $result = mysqli_query($db, $sql);
-    if (mysqli_num_rows($result) == 1) {
-      $row = mysqli_fetch_assoc($result);
-      if(password_verify($_POST["password"], $row["password"])) {
-        $_SESSION["user_id"] = $row["id"];
-        header("Location: index.php");
-        die();
-      }
+    $sql = "SELECT id, password FROM \"user\" WHERE mail = '$mail'";
+    $result = pg_query($db, $sql);
+    $row = pg_fetch_assoc($result);
+    if (password_verify($_POST["password"], $row["password"])) {
+      $_SESSION["user_id"] = $row["id"];
+      header("Location: index.php");
+      die();
     } else {
       $err = "Niepoprawne dane logowania";
     }

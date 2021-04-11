@@ -4,30 +4,31 @@
 
   if($_SERVER["REQUEST_METHOD"] == "POST") {
     require("config.php");
-    $db = mysqli_connect("$db_host:$db_port", $db_user, $db_pass, $db_name);
-    $name = mysqli_real_escape_string($db, $_POST['name']);
-    $surname = mysqli_real_escape_string($db, $_POST['surname']);
-    $mail = mysqli_real_escape_string($db, $_POST['email']);
-    $pass = mysqli_real_escape_string($db, password_hash($_POST['password'], PASSWORD_DEFAULT));
+    $db = connect_db();
+    $name = pg_escape_string($db, $_POST['name']);
+    $surname = pg_escape_string($db, $_POST['surname']);
+    $mail = pg_escape_string($db, $_POST['email']);
+    $pass = pg_escape_string($db, password_hash($_POST['password'], PASSWORD_DEFAULT));
 
     if ($_POST["poeta"] != "Mickiewicz") {
       $err = "Jest tylko jeden prawdziwy poeta!";
     } else if (empty($name) || empty($surname) || empty($mail) || empty($pass)) {
       $err = "Wypełnij wszystkie pola";
     } else {
-      $s = "SELECT mail FROM user WHERE mail = '$mail'";
-      $result = mysqli_query($db, $s);
-      if (mysqli_num_rows($result) == 1) {
+      $s = "SELECT mail FROM \"user\" WHERE mail = '$mail'";
+      $result = pg_query($db, $s);
+      if (pg_num_rows($result) == 1) {
         $err = "Podany adres email jest już w użyciu";
       }
     }
 
     if (!isset($err)) {
-      $sql = "INSERT INTO user (name, surname, mail, password) VALUES ('$name', '$surname', '$mail', '$pass')";
-      if (mysqli_query($db, $sql) == TRUE) {
+      $sql = "INSERT INTO \"user\" (name, surname, mail, password) VALUES ('$name', '$surname', '$mail', '$pass')";
+      $res = pg_query($db, $sql);
+      if ($res == TRUE) {
         header("Location: login.php");
       } else {
-        $err = "Error: ".mysqli_error($db);
+        $err = "Error: ".pg_result_error($res);
       }
     }
   }
@@ -84,11 +85,11 @@ margin: 3em 0;
       </div>
       <div class="input">
         <label for="surname">Nazwisko</label>
-        <input type="text" id="surname" name="surname" required>
+        <input type="text" id="surname" name="surname" required <?php if (isset($name)) {echo "value=\"$surname\"";} ?>>
       </div>
       <div class="input">
         <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
+        <input type="email" id="email" name="email" required <?php if (isset($name)) {echo "value=\"$mail\"";} ?>>
       </div>
       <div class="input">
         <label for="password">Hasło</label>

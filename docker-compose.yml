@@ -2,30 +2,34 @@ version: "3.3"
 
 services:
   db:
-    image: mysql:5.7
-    command: "--character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci"
+    image: postgres:11.11-alpine
     volumes:
-      - mysql-data:/var/lib/mysql
-      - ./db.sql:/docker-entrypoint-initdb.d/db.sql
+      - data:/var/lib/postgresql
+      # - ./db.sh:/docker-entrypoint-initdb.d/init.sh
+      - ./db.sql:/docker-entrypoint-initdb.d/init.sql
     restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: zsk
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
     ports:
-      - "3306:3306"
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: ts-password
+      SCHEMA: admin
+      ANON: web_anon
+      AUTHENTICATOR: authenticator
 
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    links:
-      - db
-    restart: always
-    environment:
-      PMA_HOST: db
-      PMA_PORT: 3306
-    ports:
-      - "8081:80"
+  # pgadmin:
+  #   image: dpage/pgadmin4:5.1
+  #   depends_on:
+  #     - db
+  #   restart: always
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: admin@pgadmin.com
+  #     PGADMIN_DEFAULT_PASSWORD: password
+  #     PGADMIN_LISTEN_PORT: 80
+  #   volumes:
+  #     - pgadmin:/var/lib/pgadmin
+  #   ports:
+  #     - "8081:80"
 
   web:
     image: nginx:latest
@@ -40,16 +44,20 @@ services:
   php:
     # image: php:apache
     build: ./app
+    depends_on:
+      - db
     links:
       - db
     volumes:
       - ./app:/app/app
     environment:
+      DATABASE_URL: postgres://user:password@db:5432/zsk
       DB_HOST: db
-      DB_PORT: 3306
-      DB_NAME: zsk
-      DB_USER: user
-      DB_PASSWORD: password
+      DB_PORT: 5432
+      DB_NAME: admin
+      DB_USER: admin
+      DB_PASSWORD: ts-password
 
 volumes:
-  mysql-data: {}
+  data: {}
+  pgadmin: {}
