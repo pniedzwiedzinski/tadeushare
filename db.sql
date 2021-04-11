@@ -12,6 +12,7 @@ create table if not exists "quotes" (
 );
 
 create table if not exists "uploads" (
-  quote_id INTEGER,
+  quote_id INTEGER NOT NULL,
+  user_id INTEGER NOT NULL,
   content TEXT
 );

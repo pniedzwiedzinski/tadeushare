@@ -10,7 +10,7 @@ textarea {
   margin: 1em;
 }
 </style>
-<form method="POST" action="upload.php">
+<form method="POST" action="/app/upload/">
   <textarea cols="20" rows="20" name="text" id="text"></textarea>
   <button class="button" id="submit">Prześlij</button>
 </form>
