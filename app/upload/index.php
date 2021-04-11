@@ -10,12 +10,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   require("../config.php");
   $db = connect_db();
   $content = pg_escape_string($db, $_POST["text"]);
-  $quote_id = rand(1, 999);
+  while (true) {
+    $quote_id = rand(1, 9468);
+    $sql = "SELECT quote_id FROM uploads WHERE quote_id = $quote_id";
+    $res = pg_query($db, $sql);
+    if (pg_num_rows($res) == 0) {
+      break;
+    }
+  }
 
   $sql = "INSERT INTO \"uploads\" (quote_id, user_id, content) VALUES ($quote_id, $id, '$content')";
   $res = pg_query($db, $sql);
   if ($res == TRUE) {
-    header("location: /g/$quote_id");
+    $sql = "SELECT quote FROM quotes WHERE id = $quote_id";
+    $res = pg_query($db, $sql);
+    $row = pg_fetch_assoc($res);
+    header("location: /g/".$row["quote"]);
   } else {
     http_response_code(500);
   }

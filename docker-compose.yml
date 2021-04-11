@@ -51,6 +51,7 @@ services:
       - db
     volumes:
       - ./app:/app/app
+      - ./php.ini:/usr/local/etc/php/conf.d/dev.ini
     environment:
       DATABASE_URL: postgres://admin:ts-password@db:5432/admin
       DB_HOST: db
