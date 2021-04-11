@@ -1,3 +1,3 @@
 RewriteEngine On
 RewriteBase /
-RewriteRule ^/get/([^-]+) /get/index.php?q=$1 [L]
+RewriteRule ^get/([^/]+) /get/?q=$1 [L]
