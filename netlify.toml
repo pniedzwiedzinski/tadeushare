@@ -3,3 +3,8 @@
   to = "https://tadeushare-backend.herokuapp.com/:splat"
   status = 200
   force = true
+
+[[redirects]]
+  from = "/g/*"
+  to = "https://tadeushare-backend.herokuapp.com/upload/?v=:splat"
+  status = 200
