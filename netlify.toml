@@ -6,5 +6,5 @@
 
 [[redirects]]
   from = "/g/*"
-  to = "https://tadeushare-backend.herokuapp.com/upload/?v=:splat"
+  to = "https://tadeushare-backend.herokuapp.com/get/:splat"
   status = 200
