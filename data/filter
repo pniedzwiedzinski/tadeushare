@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# Usunięcie białych znaków na początku wersu i pustych linii
+sed 's/^ *//;/^$/d;s/ /-/g;s/[»«:…—.,;!?]//g;s/\(-\)\1/\1/g' ./pan-tadeusz.txt | \
+  # Bierzemy linijki krótsze niż 50 znaków
+  awk '(length($0) < 50 && length($0) > 30)' | \
+  iconv -f utf-8 -t ascii//translit | \
+  tr '[:upper:]' '[:lower:]'
