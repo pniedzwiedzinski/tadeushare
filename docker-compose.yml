@@ -51,7 +51,7 @@ services:
     volumes:
       - ./app:/app/app
     environment:
-      DATABASE_URL: postgres://user:password@db:5432/zsk
+      DATABASE_URL: postgres://admin:ts-password@db:5432/admin
       DB_HOST: db
       DB_PORT: 5432
       DB_NAME: admin
