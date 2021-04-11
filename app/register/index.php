@@ -1,9 +1,9 @@
 <?php
   session_start();
-  require("only_anonymous.php");
+  require("../only_anonymous.php");
 
   if($_SERVER["REQUEST_METHOD"] == "POST") {
-    require("config.php");
+    require("../config.php");
     $db = connect_db();
     $name = pg_escape_string($db, $_POST['name']);
     $surname = pg_escape_string($db, $_POST['surname']);
@@ -26,7 +26,7 @@
       $sql = "INSERT INTO \"user\" (name, surname, mail, password) VALUES ('$name', '$surname', '$mail', '$pass')";
       $res = pg_query($db, $sql);
       if ($res == TRUE) {
-        header("Location: login.php");
+        header("Location: /app/login/");
       } else {
         $err = "Error: ".pg_result_error($res);
       }
@@ -34,7 +34,7 @@
   }
 
   $title="Rejestracja";
-  require('header_blank.php');
+  require('../header_blank.php');
 ?>
 <style>
 .login {
@@ -110,5 +110,5 @@ margin: 3em 0;
   </div>
 
 <?php
-  require('footer.php');
+  require('../footer.php');
 ?>

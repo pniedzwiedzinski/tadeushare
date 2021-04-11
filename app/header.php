@@ -4,19 +4,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title><?php echo "$title - Tadeushare"; ?></title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/app/style.css">
   </head>
   <body>
     <div id="container">
       <header>
         <nav>
-          <a href="index.php">Tadeushare</a>
+          <a href="/app">Tadeushare</a>
 <?php
   if (isset($_SESSION["user_id"])) {
-    echo "<a href=\"user.php\">Konto</a>\n";
-    echo "<a href=\"logout.php\">Wyloguj się</a>";
+    echo "<a href=\"/app/user/\">Konto</a>\n";
+    echo "<a href=\"/app/logout/\">Wyloguj się</a>";
   } else {
-    echo "<a href=\"login.php\">Zaloguj się</a>";
+    echo "<a href=\"/app/login/\">Zaloguj się</a>";
   }
 ?>
         </nav>

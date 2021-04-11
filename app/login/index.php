@@ -1,10 +1,10 @@
 <?php
   session_start();
 
-  require("only_anonymous.php");
+  require("../only_anonymous.php");
 
   if($_SERVER["REQUEST_METHOD"] == "POST") {
-    require("config.php");
+    require("../config.php");
     $db = connect_db();
     $mail = pg_escape_string($db, $_POST['email']);
 
@@ -13,7 +13,7 @@
     $row = pg_fetch_assoc($result);
     if (password_verify($_POST["password"], $row["password"])) {
       $_SESSION["user_id"] = $row["id"];
-      header("Location: index.php");
+      header("Location: /app/");
       die();
     } else {
       $err = "Niepoprawne dane logowania";
@@ -21,7 +21,7 @@
   }
 
   $title="Login";
-  require('header_blank.php');
+  require('../header_blank.php');
 ?>
 <style>
 .login {
@@ -85,5 +85,5 @@ margin: 3em 0;
   </div>
 
 <?php
-  require('footer.php');
+  require('../footer.php');
 ?>

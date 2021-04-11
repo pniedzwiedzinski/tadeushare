@@ -1,10 +1,10 @@
 <?php
 session_start();
 if(!isset($_SESSION["user_id"])) {
-  header("location: login.php");
+  header("location: /app/login/");
   die();
 }
-require("config.php");
+require("../config.php");
 
 function get_user() {
   $db = connect_db();
@@ -14,7 +14,7 @@ function get_user() {
   if (pg_num_rows($result) == 1) {
     return pg_fetch_assoc($result);
   } else {
-    header("location: login.php");
+    header("location: /app/login/");
     die();
   }
 }
@@ -58,7 +58,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 $row = get_user();
 $title = "Konto";
-require("header.php");
+require("../header.php");
 ?>
 <style>
 form > div {
