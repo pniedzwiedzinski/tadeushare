@@ -1,5 +1,5 @@
 Init db:
 
 ```
-psql -h $HOST -U $USER -d $DBNAME -a -q -f db.sql
+psql -h $HOST -U $USER -d $DATABASE -a -q -f db.sql
 ```

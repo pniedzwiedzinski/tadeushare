@@ -22,10 +22,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   $sql = "INSERT INTO \"uploads\" (quote_id, user_id, content) VALUES ($quote_id, $id, '$content')";
   $res = pg_query($db, $sql);
   if ($res == TRUE) {
-    $sql = "SELECT quote FROM quotes WHERE id = $quote_id";
-    $res = pg_query($db, $sql);
-    $row = pg_fetch_assoc($res);
-    header("location: /g/".$row["quote"]);
+    require("../get/search.php");
+    $quote = get_line($quote_id);
+    header("location: /g/$quote");
   } else {
     http_response_code(500);
   }
