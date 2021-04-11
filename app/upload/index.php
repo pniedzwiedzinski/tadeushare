@@ -15,7 +15,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   $sql = "INSERT INTO \"uploads\" (quote_id, user_id, content) VALUES ($quote_id, $id, '$content')";
   $res = pg_query($db, $sql);
   if ($res == TRUE) {
-    header("location: /app/get/?q=$quote_id");
+    header("location: /g/$quote_id");
   } else {
     http_response_code(500);
   }
