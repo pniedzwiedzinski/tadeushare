@@ -6,7 +6,10 @@ function search($str) {
   }
   $output=null;
   $retval=null;
-  exec("grep -n '$str' ../data.txt", $output, $retval);
+  exec("grep -n '^$str$' ../data.txt", $output, $retval);
+  if ($retval != 0) {
+    return null;
+  }
   $id = explode(":", $output[0])[0];
   return $id;
 }
