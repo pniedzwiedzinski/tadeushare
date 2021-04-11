@@ -106,7 +106,7 @@ margin: 3em 0;
       </div>
       <button class="button" type="submit">Zarejestruj się</button>
     </form>
-    <p>Masz już konto? <a href="login.php">Zaloguj się</a></p>
+    <p>Masz już konto? <a href="/app/login">Zaloguj się</a></p>
   </div>
 
 <?php
