@@ -5,6 +5,7 @@ if(!isset($_SESSION["user_id"])) {
   die();
 }
 require("../config.php");
+require("../get/search.php");
 
 function get_user() {
   $db = connect_db();
@@ -17,6 +18,18 @@ function get_user() {
     header("location: /app/login/");
     die();
   }
+}
+
+function get_user_posts() {
+  $db = connect_db();
+  $id = pg_escape_string($db, $_SESSION['user_id']);
+  $sql = "SELECT quote_id, content FROM \"uploads\" WHERE user_id = '$id'";
+  $result = pg_query($db, $sql);
+  $arr = [];
+  while ($row = pg_fetch_assoc($result)) {
+    $arr[] = [get_line($row['quote_id']), $row['quote_id'], substr($row['content'], 0, 10)];
+  }
+  return $arr;
 }
 
 function handle_post() {
@@ -74,8 +87,11 @@ form input {
 form > div > * {
   align-self: center;
 }
+
+li {
+  margin: 1em 0;
+}
 </style>
-<h1>Ustawienia konta</h1>
 <?php
 if (isset($err)) {
   echo "<div class=\"error\">$err</div>";
@@ -83,6 +99,25 @@ if (isset($err)) {
   echo "<div class=\"success\">$status</div>";
 }
 ?>
+<h1>Udostępnione teksty</h1>
+<div>
+  <?php
+$published = get_user_posts();
+if (count($published) == 0) {
+  echo "<p>Jeszcze nic nie przesłałeś</p>";
+} else {
+  echo "<ul>";
+}
+foreach ($published as $value) {
+  echo "<li><a href=\"/g/$value[0]\">$value[0]</a> | <a href=\"/app/delete/?q=$value[1]\">❌</a></li>";
+}
+if (count($published) != 0) {
+  echo "</ul>";
+}
+  ?>
+</div>
+<hr>
+<h1>Ustawienia konta</h1>
 <form method="POST">
   <div>
   <label for="name">Imię</label>

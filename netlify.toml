@@ -8,3 +8,8 @@
   from = "/g/*"
   to = "https://tadeushare-backend.herokuapp.com/get/:splat"
   status = 200
+
+[[redirects]]
+  from = "/r/*"
+  to = "https://tadeushare-backend.herokuapp.com/raw/:splat"
+  status = 200

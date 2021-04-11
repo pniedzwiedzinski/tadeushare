@@ -11,7 +11,7 @@
     $sql = "SELECT id, password FROM \"user\" WHERE mail = '$mail'";
     $result = pg_query($db, $sql);
     $row = pg_fetch_assoc($result);
-    if (password_verify($_POST["password"], $row["password"])) {
+    if (!empty($row) && password_verify($_POST["password"], $row["password"])) {
       $_SESSION["user_id"] = $row["id"];
       header("Location: /app/");
       die();

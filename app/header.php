@@ -10,7 +10,7 @@
     <div id="container">
       <header>
         <nav>
-          <a href="/app">Tadeushare</a>
+          <a href="/app/">Tadeushare</a>
 <?php
   if (isset($_SESSION["user_id"])) {
     echo "<a href=\"/app/user/\">Konto</a>\n";
