@@ -1,0 +1,4 @@
+#!/bin/sh
+## Check for bad characters
+
+cat data.txt | sed 's/[a-zA-Z]//g;s/-//g;/^$/d'
