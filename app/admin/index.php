@@ -3,6 +3,8 @@ session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if(password_verify($_POST["password"], getenv("ADMIN_PASSWORD"))) {
     $_SESSION["admin"] = true;
+    header("location: /app/admin/");
+    die();
   } else {
     $err = "<p>Wrong password</p><img src=\"https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fkipmooney.com%2Fwp-content%2Fuploads%2F2012%2F02%2Fgandalfmeme.jpg&f=1&nofb=1\">";
   }
