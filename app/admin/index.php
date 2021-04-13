@@ -20,7 +20,7 @@ if (!isset($_SESSION["admin"])) {
 <form method="POST">
   <label for="password">Hasło:</label>
   <input type="password" name="password" id="password">
-  <button type="submit">Dalej</button>
+  <button class="button" type="submit">Dalej</button>
 </form>
 END;
 } else {
