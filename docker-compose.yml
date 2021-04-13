@@ -54,11 +54,7 @@ services:
       - ./php.ini:/usr/local/etc/php/conf.d/dev.ini
     environment:
       DATABASE_URL: postgres://admin:ts-password@db:5432/admin
-      DB_HOST: db
-      DB_PORT: 5432
-      DB_NAME: admin
-      DB_USER: admin
-      DB_PASSWORD: ts-password
+      ADMIN_PASSWORD: '$$2y$$10$$o/hvOxwVJKNU.f1.kUcRNOnqND9jAhsMvpzRrwnLbTRXyjgj9EK1G'
 
 volumes:
   data: {}

@@ -10,6 +10,11 @@
     <div id="container">
       <header>
         <nav>
+<?php
+if (isset($_SESSION["admin"])) {
+    echo "<a href=\"/app/admin/\" style=\"color: red\">ADMIN</a>";
+}
+?>
           <a href="/app/">Tadeushare</a>
 <?php
   if (isset($_SESSION["user_id"])) {
